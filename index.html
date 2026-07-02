@@ -1217,28 +1217,79 @@ body::before {
 
 /* 学生端公告 */
 .student-announcement {
-  background: linear-gradient(135deg, rgba(108,92,231,0.06), rgba(0,184,148,0.04));
-  border: 1px solid rgba(108,92,231,0.12);
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.student-announcement::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary), var(--accent));
+  border-radius: 4px 0 0 4px;
 }
 
 .student-announcement:last-child {
   margin-bottom: 0;
 }
 
+.student-announcement-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.student-announcement-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.student-announcement-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
 .student-announcement-text {
   font-size: 14px;
   color: var(--text);
-  line-height: 1.6;
-  margin-bottom: 8px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.student-announcement-text .section-divider {
+  margin: 16px 0 12px;
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 14px;
 }
 
 .student-announcement-meta {
   font-size: 12px;
   color: var(--text-muted);
   text-align: right;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
 }
 
 /* 学生端进度条 */
@@ -2940,6 +2991,17 @@ function showStudentHome(st) {
   renderStudentClassStats(st);
 }
 
+function formatAnnouncementContent(text) {
+  if (!text) return '';
+  // 转义HTML
+  let html = esc(text);
+  // 将 ━━ xxx ━━ 格式转为小标题
+  html = html.replace(/━+ ([^━]+) ━+/g, '<div class="section-divider">$1</div>');
+  // 将换行符转为 <br>
+  html = html.replace(/\n/g, '<br>');
+  return html;
+}
+
 function renderStudentAnnouncements() {
   const container = document.getElementById('studentAnnouncementList');
   // 只显示最新的2条
@@ -2948,13 +3010,17 @@ function renderStudentAnnouncements() {
     .slice(0, 2);
 
   if (recent.length === 0) {
-    container.innerHTML = '<div style="text-align:center;color:var(--text-muted);font-size:14px;padding:16px">暂无公告</div>';
+    container.innerHTML = '<div style="text-align:center;color:var(--text-muted);font-size:14px;padding:24px">暂无公告</div>';
     return;
   }
 
   container.innerHTML = recent.map(a => `
     <div class="student-announcement">
-      <div class="student-announcement-text">${esc(a.content)}</div>
+      <div class="student-announcement-header">
+        <div class="student-announcement-icon">📢</div>
+        <div class="student-announcement-title">班级公告</div>
+      </div>
+      <div class="student-announcement-text">${formatAnnouncementContent(a.content)}</div>
       <div class="student-announcement-meta">—— 猫老师 · ${a.createdAt || '-'}</div>
     </div>
   `).join('');
