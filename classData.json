@@ -1,6 +1,46 @@
 {
   "version": 2,
-  "students": [],
+  "students": [
+    {
+      "id": "mr2yzvphxw9kmzumw",
+      "name": "猫老师",
+      "province": "山东",
+      "gaokaoScore": 132,
+      "totalScore": 666,
+      "phone": "1",
+      "wechat": "2",
+      "plan": "day",
+      "status": "active",
+      "referrer": null,
+      "specialPay": false,
+      "subjectNeeds": "",
+      "notes": "",
+      "createdAt": "2026-07-02",
+      "payments": [],
+      "progress": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    }
+  ],
   "announcements": [],
-  "exportedAt": "2026-07-02T00:00:00.000Z"
+  "exportedAt": "2026-07-02T03:54:08.317Z"
 }
