@@ -39,6 +39,45 @@
         false,
         false
       ]
+    },
+    {
+      "id": "mr303rtkl6suru4wl",
+      "name": "11",
+      "province": "山东",
+      "gaokaoScore": 100,
+      "totalScore": 111,
+      "phone": "",
+      "wechat": "",
+      "plan": "day",
+      "status": "active",
+      "referrer": "mr2yzvphxw9kmzumw",
+      "specialPay": false,
+      "subjectNeeds": "",
+      "notes": "",
+      "createdAt": "2026-07-02",
+      "payments": [],
+      "progress": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
     }
   ],
   "announcements": [
@@ -48,5 +87,5 @@
       "createdAt": "2026-07-02"
     }
   ],
-  "exportedAt": "2026-07-02T04:17:08.151Z"
+  "exportedAt": "2026-07-02T04:25:22.975Z"
 }
