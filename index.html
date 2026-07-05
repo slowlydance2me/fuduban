@@ -1151,6 +1151,18 @@ body::before {
   display: none;
 }
 
+.student-login-loading {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.student-login-input:disabled,
+.student-login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* 学生端主页 */
 .student-home {
   max-width: 600px;
@@ -1781,9 +1793,10 @@ body::before {
   <div class="student-login-card">
     <div class="student-login-title">猫老师 · 复读班</div>
     <div class="student-login-subtitle">请输入你的姓名，查看你的学习进度</div>
+    <div class="student-login-loading" id="loginLoading">正在加载班级数据...</div>
     <div class="student-login-error" id="loginError">未找到你的信息，请联系猫老师</div>
-    <input type="text" class="student-login-input" id="studentNameInput" placeholder="输入你的姓名" maxlength="20">
-    <button class="student-login-btn" onclick="studentLogin()">进入班级</button>
+    <input type="text" class="student-login-input" id="studentNameInput" placeholder="输入你的姓名" maxlength="20" disabled>
+    <button class="student-login-btn" id="loginBtn" onclick="studentLogin()" disabled>进入班级</button>
     <div class="student-login-hint">这一年里你不是一个人</div>
   </div>
 </div>
@@ -2924,6 +2937,11 @@ function initStudentPortal() {
   // 显示登录页
   document.getElementById('studentLogin').style.display = 'flex';
   document.getElementById('studentHome').style.display = 'none';
+
+  // 数据加载完成，启用输入框和按钮
+  document.getElementById('loginLoading').style.display = 'none';
+  document.getElementById('studentNameInput').disabled = false;
+  document.getElementById('loginBtn').disabled = false;
 }
 
 function findStudentByName(name) {
